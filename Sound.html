@@ -1,0 +1,602 @@
+<html>
+	<head>
+		<title> Sound </title>
+
+		<link rel = "stylesheet" type = "text/css" href = "styles/bowieFanPage.css" />
+
+		<style type="text/css">
+			body {
+				background-color: var(--dark-color-theme);
+			}
+			.album_cover {
+				display: none;
+			}
+			.album_content {
+				display: none;
+			}
+			.album_cover img {
+				width: 450px;
+				box-shadow: 10px 4px 0 0 var(--blue), 17.5px 7px 0 0 #18183F, 30px 12px 0 0 var(--crimson);
+			}
+			.popup_menu {
+				position: absolute;
+				right: 0;
+				top: 120px;
+				transform: translateX(500px);
+				transition: transform 0.4s;
+
+				height: 650px;
+				background-color: rgba(0, 0, 0, 0.7);
+
+				color: var(--light-color-theme);
+			}
+			.popup_menu:hover {
+				transform: translateX(0);
+			}
+			.popup_menu:hover #open_pointer{
+				display: none;
+			}
+			.popup_menu:hover #close_pointer{
+				display: inline-block;
+			}
+
+			.popup_menu .pointer {
+				width: 50px; 
+				display: inline-block;
+
+				height: 650px;
+
+				vertical-align: middle;
+				text-align: center;
+				font-size: 24pt;
+			}
+			#open_pointer {
+				display: inline-block;
+			}
+			#close_pointer {
+				display: none;
+			}
+
+			.list {
+				cursor: pointer;
+			}
+			.list:hover {
+				color: var(--crimson);
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			
+			<div class="header" style="display: flex;">
+				<div style="display: flex; display: inline-block;
+				margin: 15px 60px;">
+					<a href="Lab10Task2HomePage.html">
+						<img class="glow_home_icon home_icon" src="images/home_icon.png">
+						<img class="main_home_icon home_icon" src="images/home_icon.png">
+					</a>
+				</div>
+				<div id="wrapper">
+					<div class="button"> <a href="Sound.html"> Sound </a> </div>
+					<div class="button"> <a href="Vision.html"> Vision </a> </div>
+				</div>
+
+			</div>
+
+			<div style="height: 650px; display: flex; overflow: hidden;"> 
+
+				<div class="releaseDiv" style="display: flex;">
+					<div>
+						<h1> Tracklist </h1>
+
+						<div class="album_content 1" style="display: block;">
+						<ol>
+							<li> Uncle Arthur </li>
+							<li> Sell Me a Coat </li>
+							<li> Rubber Band </li>
+							<li> Love You Till Tuesday </li>
+							<li> There Is a Happy Land </li>
+							<li> We Are Hungry Men </li>
+							<li> When I Live My Dream </li>
+							<li> Little Bombardier </li>
+							<li> Silly Boy Blue </li>
+							<li> Come and Buy My Toys </li>
+							<li> Join the Gang </li>
+							<li> She's Got Medals </li>
+							<li> Maid of Bond Street </li>
+							<li> Please Mr. Gravedigger </li>
+						</ol>
+						</div>
+
+						<div class="album_content 2">
+						<ol>
+							<li> Space Oddity </li>
+							<li> Unwashed and Somewhat Slightly Dazed </li>
+							<li> (Don’t Sit Down) </li>
+							<li> Letter to Hermione </li>
+							<li> Cygnet Committee </li>
+							<li> Janine </li>
+							<li> An Occasional Dream </li>
+							<li> Wild Eyed Boy From Freecloud </li>
+							<li> God Knows I’m Good </li>
+							<li> Memory of a Free Festival </li>
+						</ol>
+						</div>
+
+						<div class="album_content 3">
+						<ol>
+							<li> The Width of a Circle </li>
+							<li> All the Madmen </li>
+							<li> Black Country Rock </li>
+							<li> After All </li>
+							<li> Running Gun Blues </li>
+							<li> Saviour Machine </li>
+							<li> She Shook Me Cold </li>
+							<li> The Man Who Sold the World </li>
+							<li> The Supermen </li>
+						</ol>
+						</div>
+
+						<div class="album_content 4">
+						<ol>
+							<li> Changes </li>
+							<li> Oh! You Pretty Things </li>
+							<li> Eight Line Poem </li>
+							<li> Life on Mars? </li>
+							<li> Kooks </li>
+							<li> Quicksand </li>
+							<li> Fill Your Heart </li>
+							<li> Andy Warhol </li>
+							<li> Song for Bob Dylan </li>
+							<li> Queen Bitch </li>
+							<li> The Bewlay Brothers </li>
+						</ol>
+						</div>
+
+						<div class="album_content 5">
+						<ol>
+							<li> Five Years </li>
+							<li> Soul Love </li>
+							<li> Moonage Daydream </li>
+							<li> Starman </li>
+							<li> It Ain’t Easy </li>
+							<li> Lady Stardust </li>
+							<li> Star </li>
+							<li> Hang on to Yourself </li>
+							<li> Ziggy Stardust </li>
+							<li> Suffragette City </li>
+							<li> Rock 'n' Roll Suicide </li>
+						</ol>
+						</div>
+
+						<div class="album_content 6">
+						<ol>
+							<li> Watch That Man </li>
+							<li> Aladdin Sane </li>
+							<li> Drive-In Saturday </li>
+							<li> Panic in Detroit </li>
+							<li> Cracked Actor </li>
+							<li> Time </li>
+							<li> The Prettiest Star </li>
+							<li> Let’s Spend the Night Together </li>
+							<li> The Jean Genie </li>
+							<li> Lady Grinning Soul </li>
+						</ol>
+						</div>
+
+						<div class="album_content 7">
+						<ol>
+							<li> Future Legend </li>
+							<li> Diamond Dog </li>
+							<li> Sweet Thing </li>
+							<li> Candidate </li>
+							<li> Sweet Thing (reprise) </li>
+							<li> Rebel Rebel </li>
+							<li> Rock 'n' Roll with Me </li>
+							<li> We Are the Dead </li>
+							<li> 1984 </li>
+							<li> Big Brother </li>
+							<li> Chant of the Ever Circling Skeletal Family </li>
+						</ol>
+						</div>
+
+						<div class="album_content 8">
+						<ol>
+							<li> Young Americans </li>
+							<li> Win </li>
+							<li> Fascination </li>
+							<li> Right </li>
+							<li> Somebody Up There Likes Me </li>
+							<li> Across the Universe </li>
+							<li> Can You Hear Me? </li>
+							<li> Fame </li>
+						</ol>
+						</div>
+
+						<div class="album_content 9">
+						<ol>
+							<li> Station to Station </li>
+							<li> Golden Years </li>
+							<li> Word on a Wing </li>
+							<li> TVC 15 </li>
+							<li> Stay </li>
+							<li> Wild Is the Wind </li>
+						</ol>
+						</div>
+
+						<div class="album_content 10">
+						<ol>
+							<li> Speed of Life </li>
+							<li> Breaking Glass </li>
+							<li> What in the World </li>
+							<li> Sound and Vision </li>
+							<li> Always Crashing in the Same Car </li>
+							<li> Be My Wife </li>
+							<li> A New Career in a New Town </li>
+							<li> Warszawa </li>
+							<li> Art Decade </li>
+							<li> Weeping Wall </li>
+							<li> Subterraneans </li>
+						</ol>
+						</div>
+
+						<div class="album_content 11">
+						<ol>
+							<li> Beauty and the Beast </li>
+							<li> Joe the Lion </li>
+							<li> "Heroes" </li>
+							<li> Sons of the Silent Age </li>
+							<li> Blackout </li>
+							<li> V-2 Schneider </li>
+							<li> Sense of Doubt </li>
+							<li> Moss Garden </li>
+							<li> Neuköln </li>
+							<li> The Secret Life of Arabia </li>
+						</ol>
+						</div>
+
+						<div class="album_content 12">
+						<ol>
+							<li> Fantastic Voyage </li>
+							<li> African Night Flight </li>
+							<li> Move On </li>
+							<li> Yassassin </li>
+							<li> Red Sails </li>
+							<li> DJ </li>
+							<li> Look Back in Anger </li>
+							<li> Boys Keep Swinging </li>
+							<li> Repetition </li>
+							<li> Red Money </li>
+						</ol>
+						</div>
+
+						<div class="album_content 13">
+						<ol>
+							<li> It’s No Game (Part 1) </li>
+							<li> Up the Hill Backwards </li>
+							<li> Scary Monsters (and Super Creeps) </li>
+							<li> Ashes to Ashes </li>
+							<li> Fashion </li>
+							<li> Teenage Wildlife </li>
+							<li> Scream Like a Baby </li>
+							<li> Kingdom Come </li>
+							<li> Because You’re Young </li>
+							<li> It’s No Game (Part 2) </li>
+						</ol>
+						</div>
+
+						<div class="album_content 14">
+						<ol>
+							<li> Modern Love </li>
+							<li> China Girl </li>
+							<li> Let’s Dance </li>
+							<li> Without You </li>
+							<li> Ricochet </li>
+							<li> Criminal World </li>
+							<li> Cat People (Putting Out Fire) </li>
+							<li> Shake It </li>
+						</ol>
+						</div>
+
+						<div class="album_content 15">
+						<ol>
+							<li> Loving the Alien </li>
+							<li> Don’t Look Down </li>
+							<li> God Only Knows </li>
+							<li> Tonight </li>
+							<li> Neighborhood Threat </li>
+							<li> Blue Jean </li>
+							<li> Tumble and Twirl </li>
+							<li> I Keep Forgettin' </li>
+							<li> Dancing with the Big Boys </li>
+						</ol>
+						</div>
+
+						<div class="album_content 16">
+						<ol>
+							<li> Day-In, Day-Out </li>
+							<li> Time Will Crawl </li>
+							<li> Beat of Your Drum </li>
+							<li> Never Let Me Down </li>
+							<li> Zeroes </li>
+							<li> Glass Spider </li>
+							<li> Shining Star (Makin' My Love) </li>
+							<li> New York’s in Love </li>
+							<li> '87 and Cry </li>
+							<li> Too Dizzy </li>
+							<li> Bang Bang </li>
+						</ol>
+						</div>
+
+						<div class="album_content 17">
+						<ol>
+							<li> The Wedding Song </li>
+							<li> You’ve Been Around </li>
+							<li> I Feel Free </li>
+							<li> Black Tie White Noise </li>
+							<li> Jump They Say </li>
+							<li> Nite Flights </li>
+							<li> Pallas Athena </li>
+							<li> Miracle Goodnight </li>
+							<li> Don’t Let Me Down & Down </li>
+							<li> Looking for Lester </li>
+							<li> I Know It’s Gonna Happen Someday </li>
+							<li> The Wedding Song </li>
+						</ol>
+						</div>
+
+						<div class="album_content 18">
+						<ol>
+							<li> Leon Takes Us Outside </li>
+							<li> Outside </li>
+							<li> The Hearts Filthy Lesson </li>
+							<li> A Small Plot of Land </li>
+							<li> (Segue) — Baby Grace (A Horrid Cassette) </li>
+							<li> Hallo Spaceboy </li>
+							<li> The Motel </li>
+							<li> I Have Not Been to Oxford Town </li>
+							<li> No Control </li>
+							<li> (Segue) — Algeria Touchshriek </li>
+							<li> The Voyeur of Utter Destruction (as Beauty) </li>
+							<li> (Segue) — Ramona A. Stone/I Am With Name </li>
+							<li> Wishful Beginnings </li>
+							<li> We Prick You </li>
+							<li> (Segue) — Nathan Adler </li>
+							<li> I’m Deranged </li>
+							<li> Thru' These Architects Eyes </li>
+							<li> (Segue) — Nathan Adler </li>
+							<li> Strangers When We Meet </li>
+						</ol>
+						</div>
+
+						<div class="album_content 19">
+						<ol>
+							<li> Little Wonder </li>
+							<li> Looking for Satellites </li>
+							<li> Battle for Britain (The Letter) </li>
+							<li> Seven Years in Tibet </li>
+							<li> Dead Man Walking </li>
+							<li> Telling Lies </li>
+							<li> The Last Thing You Should Do </li>
+							<li> I’m Afraid of Americans </li>
+							<li> Law (Earthlings on Fire) </li>
+						</ol>
+						</div>
+
+						<div class="album_content 20">
+						<ol>
+							<li> Thursday’s Child </li>
+							<li> Something in the Air </li>
+							<li> Survive </li>
+							<li> If I’m Dreaming My Life </li>
+							<li> Seven </li>
+							<li> What’s Really Happening? </li>
+							<li> The Pretty Things Are Going to Hell </li>
+							<li> New Angels of Promise </li>
+							<li> Brilliant Adventure </li>
+							<li> The Dreamers </li>
+							<li> We All Go Through </li>
+						</ol>
+						</div>
+
+						<div class="album_content 21">
+						<ol>
+							<li> Sunday </li>
+							<li> Cactus </li>
+							<li> Slip Away </li>
+							<li> Slow Burn </li>
+							<li> Afraid </li>
+							<li> I’ve Been Waiting for You </li>
+							<li> I Would Be Your Slave </li>
+							<li> I Took a Trip on a Gemini Spaceship </li>
+							<li> 5:15 The Angels Have Gone </li>
+							<li> Everyone Says 'Hi' </li>
+							<li> A Better Future </li>
+							<li> Heathen (The Rays) </li>
+						</ol>
+						</div>
+
+						<div class="album_content 22">
+						<ol>
+							<li> New Killer Star </li>
+							<li> Pablo Picasso </li>
+							<li> Never Get Old </li>
+							<li> The Loneliest Guy </li>
+							<li> Looking for Water </li>
+							<li> She’ll Drive the Big Car </li>
+							<li> Days </li>
+							<li> Fall Dog Bombs the Moon </li>
+							<li> Try Some, Buy Some </li>
+							<li> Reality </li>
+							<li> Bring Me the Disco King </li>
+						</ol>
+						</div>
+
+						<div class="album_content 23">
+						<ol>
+							<li> The Next Day </li>
+							<li> Dirty Boys </li>
+							<li> The Stars (Are Out Tonight) </li>
+							<li> Love Is Lost </li>
+							<li> Where Are We Now? </li>
+							<li> Valentine's Day </li>
+							<li> If You Can See Me </li>
+							<li> I'd Rather Be High </li>
+							<li> Boss of Me </li>
+							<li> Dancing Out in Space </li>
+							<li> How Does the Grass Grow? </li>
+							<li> (You Will) Set the World On Fire </li>
+							<li> You Feel So Lonely You Could Die </li>
+							<li> Heat </li>
+						</ol>
+						</div>
+
+						<div class="album_content 24">
+						<ol>
+							<li> Blackstar </li>
+							<li> Tis a Pity She Was a Whore </li>
+							<li> Lazarus </li>
+							<li> Sue (Or in a Season of Crime) </li>
+							<li> Girl Loves Me </li>
+							<li> Dollar Days </li>
+							<li> I Can’t Give Everything Away </li>
+						</ol>
+						</div>
+					</div>
+				</div>
+
+				<div class="releaseDiv" style="display: flex; flex: 1.5">
+					<div class="album_cover 1" style="display: block;">
+						<img src="images/albums/david_bowie.jpg">
+					</div>
+					<div class="album_cover 2">
+						<img src="images/albums/space_oddity.jpg">
+					</div>
+					<div class="album_cover 3">
+						<img src="images/albums/the_man_who_sold_the_world.jpg">
+					</div>
+					<div class="album_cover 4">
+						<img src="images/albums/hunky_dory.jpg">
+					</div>
+					<div class="album_cover 5">
+						<img src="images/albums/the_rise_and_fall_of_ziggy_stardust.jpg">
+					</div>
+					<div class="album_cover 6">
+						<img src="images/albums/aladdin_sane.jpg">
+					</div>
+					<div class="album_cover 7">
+						<img src="images/albums/diamond_dogs.jpg">
+					</div>
+					<div class="album_cover 8">
+						<img src="images/albums/young_americans.jpg">
+					</div>
+					<div class="album_cover 9">
+						<img src="images/albums/station_to_station.jpg">
+					</div>
+					<div class="album_cover 10">
+						<img src="images/albums/low.jpg">
+					</div>
+					<div class="album_cover 11">
+						<img src="images/albums/heroes.jpg">
+					</div>
+					<div class="album_cover 12">
+						<img src="images/albums/lodger.jpg">
+					</div>
+					<div class="album_cover 13">
+						<img src="images/albums/scary_monsters.jpg">
+					</div>
+					<div class="album_cover 14">
+						<img src="images/albums/lets_dance.jpg">
+					</div>
+					<div class="album_cover 15">
+						<img src="images/albums/tonight.jpg">
+					</div>
+					<div class="album_cover 16">
+						<img src="images/albums/never_let_me_down.jpg">
+					</div>
+					<div class="album_cover 17">
+						<img src="images/albums/black_tie_white_noise.jpg">
+					</div>
+					<div class="album_cover 18">
+						<img src="images/albums/outside.jpg">
+					</div>
+					<div class="album_cover 19">
+						<img src="images/albums/earthling.jpg">
+					</div>
+					<div class="album_cover 20">
+						<img src="images/albums/hours.jpg">
+					</div>
+					<div class="album_cover 21">
+						<img src="images/albums/heathen.jpg">
+					</div>
+					<div class="album_cover 22">
+						<img src="images/albums/reality.jpg">
+					</div>
+					<div class="album_cover 23">
+						<img src="images/albums/the_next_day.jpg">
+					</div>
+					<div class="album_cover 24">
+						<img src="images/albums/blackstar.jpg">
+					</div>
+				</div>
+
+				<div class="popup_menu">
+					<div class="pointer" id="open_pointer"> &#10094; </div>
+					<div class="pointer" id="close_pointer"> &#10095; </div>
+
+					<div style="width: 500px; height: 650px; display: inline-block; overflow-y: scroll;">
+						<h1> Albums </h1>
+						<ol>
+							<li class="list 1"> David Bowie </li>
+							<li class="list 2"> Space Oddity </li>
+							<li class="list 3"> The Man Who Sold the World </li>
+							<li class="list 4"> Hunky Dory </li>
+							<li class="list 5"> The Rise and Fall of Ziggy Stardust and the Spiders from Mars </li>
+							<li class="list 6"> Aladdin Sane </li>
+							<li class="list 7"> Diamond Dogs </li>
+							<li class="list 8"> Young Americans  </li>
+							<li class="list 9"> Station to Station </li>
+							<li class="list 10"> Low </li>
+							<li class="list 11"> Heroes </li>
+							<li class="list 12"> Lodger </li>
+							<li class="list 13"> Scary Monsters (and Super Creeps) </li>
+							<li class="list 14"> Let’s Dance </li>
+							<li class="list 15"> Tonight </li>
+							<li class="list 16"> Never Let Me Down </li>
+							<li class="list 17"> Black Tie White Noise </li>
+							<li class="list 18"> 1. Outside </li>
+							<li class="list 19"> Earthling </li>
+							<li class="list 20"> ‘hours…’ </li>
+							<li class="list 21"> Heathen </li>
+							<li class="list 22"> Reality </li>
+							<li class="list 23"> The Next Day </li>
+							<li class="list 24"> Blackstar </li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer">
+			&#169; Valeriya Hameza, 2020
+			<br>
+			<a href="mailto:tavi4ham@gmail.com"> tavi4ham@gmail.com </a>
+		</div>
+
+		<script type="text/javascript" src="scripts/jquery-3.5.0.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('.list').click(function(event) {
+					var classNum = event.target.classList[1];
+
+					$(".album_cover").css('display', 'none');
+					$(".album_content").css('display', 'none');
+
+					$(".album_cover." + classNum).css('display', 'block');
+					$(".album_content." + classNum).css('display', 'block');
+				});
+			});
+		</script>
+	</body>
+</html>

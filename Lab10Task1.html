@@ -1,0 +1,428 @@
+<html>
+
+<head>
+  <title>Welcome to Twin Peaks</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+  
+  <style type="text/css">
+  	:root {
+  		--bg-dark-color-theme: #301B0D;
+  		--bg-light-color-theme: #FFEFDD;
+  		--header-main-theme: #750501;
+  		--glass-color: rgba(226, 208, 205, 0.8);
+  	}
+  	body {
+  		font: 16pt Oswald;
+  	}
+  	#header {
+  		height: 100; 
+  		position: sticky;  
+		position: -webkit-sticky;
+  		top: 0;
+  		background-color: var(--header-main-theme);
+  		z-index: 1;
+  	}
+  	div.left {
+		background-image: repeating-linear-gradient(-45deg,
+			#FFEFDD,
+			#FFEFDD 30px,
+			#301B0D 30px,
+			#301B0D 60px);
+  	}
+  	div.right {
+		background-image: repeating-linear-gradient(45deg,
+			#FFEFDD,
+			#FFEFDD 30px,
+			#301B0D 30px,
+			#301B0D 60px);
+  	}
+  	div.buttonDiv {
+  		display: none;
+  	}
+  	li {
+  		margin-bottom: 1em;
+  	}
+  	.col1 {
+  		width: 150px;
+  	}
+  	rect {
+  		height: 100%;
+  		width: 200px;
+  		fill: transparent;
+  	}
+  	text {
+  		font: 35pt Oswald;
+  		text-transform: uppercase;
+		fill: #593125;
+		stroke-width: 2px;
+		stroke: #1a8f1d;
+		pointer-events: none;
+  	}
+  	button {
+  		border-radius: 4px;
+		border: none;
+		text-align: center; 
+		padding: 20px;
+  	}
+  	.swipe_button {
+		display: inline-block;
+		color: #FFFFFF;
+		width: 200px;
+		transition: all 0.5s;
+		cursor: pointer;
+		margin: 5px;
+	}
+	#submit {
+		background-color: #1A8F1D;
+	}
+	#cancel {
+		background-color: #750501;
+	}
+	button span {
+		cursor: pointer;
+  		display: inline-block;
+  		font: 16pt Oswald;
+	}
+  	.swipe_button span {
+  		transition: 0.5s;
+  		position: relative;
+  	}
+  	.swipe_button span:after {
+  		position: absolute;
+  		opacity: 0;
+		top: 5px;
+		right: -15px;
+		transition: 0.5s;
+  	}
+  	#submit span:after {
+  		content: url("images/submit_mark.png");
+  	}
+  	#cancel span:after {
+  		content: url("images/cancel_mark.png");
+  	}
+  	.swipe_button:hover span {
+		padding-right: 35px;
+	}
+	.swipe_button:hover span:after {
+		opacity: 1;
+		right: 0;
+	}
+	#scoreOutput {
+		display: none;
+	}
+	#results_table tr:nth-child(odd) {
+		background-color:  #941C19;
+		color: var(--bg-light-color-theme);
+	}
+	#results_table tr:nth-child(even) {
+		background-color: var(--bg-light-color-theme);
+		color: var(--bg-dark-color-theme);
+	}
+	#results_table tr:first-child {
+		background-color: var(--header-main-theme);
+		color: var(--bg-light-color-theme);
+	}
+	#yourPhotoDiv {
+		display: none;
+	}
+	#yourPhoto {
+		height: 300px;
+	}
+  </style>
+</head>
+
+<body style="margin: 0; padding: 0;">
+	<script type="text/javascript" src="scripts/Lab10Task1Script.js"></script>
+
+	<div id="header" style="display: flex;">
+		<div style="flex: 1"></div>
+		<div style="flex: 2">
+			<svg class="quiz" height="100%" width="200px">
+				<rect x="0" y="0"></rect>
+				<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">Quiz</text>
+			</svg>
+
+			<svg class="results" height="100%" width="200px">
+				<rect x="0" y="0"></rect>
+				<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">Results</text>
+			</svg>
+
+			<svg class="surprise" height="100%" width="200px">
+				<rect x="0" y="0"></rect>
+				<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">Surprise</text>
+			</svg>
+		</div>
+		<div style="flex: 1"></div>
+	</div>
+
+	<div style="width: 100%; height: 100%; position: fixed; margin: 0; padding: 0">
+		<div style="width: 12.5%; height: 100%; display: inline-block;" class="left"></div><!--
+	 --><div style="width: 12.5%; height: 100%; display: inline-block;" class="right"></div><!--
+	 --><div style="width: 12.5%; height: 100%; display: inline-block;" class="left"></div><!--
+	 --><div style="width: 12.5%; height: 100%; display: inline-block;" class="right"></div><!--
+	 --><div style="width: 12.5%; height: 100%; display: inline-block;" class="left"></div><!--
+	 --><div style="width: 12.5%; height: 100%; display: inline-block;" class="right"></div><!--
+	 --><div style="width: 12.5%; height: 100%; display: inline-block;" class="left"></div><!--
+	 --><div style="width: 12.5%; height: 100%; display: inline-block;" class="right"></div>
+	</div>
+
+	<div style="margin: auto; width: 50%; background-color: var(--glass-color); backdrop-filter: blur(7px); padding: 3% 5%;">
+		<div class="buttonDiv quizDiv"> 
+			<h2> Тест: насколько ты знаешь Твин Пикс </h2>
+
+			<form id="resetForm"></form>
+			<form id="quiz" method="post" onsubmit="showQuizResult(this); return false;">
+				
+				Нам нужно ваше имя <br>
+				<input type="text" id="agentName" value="FBI agent"><br><br>
+
+				И ваша фотография (а еще ваша одежда, сапоги и мотоцикл, но это не точно) <br>
+				<div id="yourPhotoDiv">
+					<img src="" id="yourPhoto"/>
+				</div>
+
+				<input type="file" id="fileInput" onchange="uploadPreview()" accept="image/*">
+
+				<ol>
+					
+					<li> Что бы вы первым делом попробовали в кафе Double R? <br>
+
+						<input type="radio" id="question1Choice1" name="question1" value="false">
+						<label for="question1Choice1"> Яблочный пирог и чашечку чая </label> <br>
+
+						<input type="radio" id="question1Choice2" name="question1" value="true">
+						<label for="question1Choice2"> Вишневый пирог и чашечку кофе </label> <br>
+
+						<input type="radio" id="question1Choice3" name="question1" value="false">
+						<label for="question1Choice3"> Творожный чизкейк и латте </label> <br>
+
+						<input type="radio" id="question1Choice4" name="question1" value="false">
+						<label for="question1Choice4"> Молочный коктейль за 5 долларов </label> <br>
+					</li>
+
+					<li>
+						
+						С какими предметами не расставались герои сериала? <br>
+
+						<table>
+							
+							<tr>
+								<td class="col1"> Джеймс </td> 
+								<td> 
+									<select id="question2Moto">
+										<option value="false">глазная повязка</option>
+ 										<option value="false">диктофон</option>
+ 										<option value="true">мотоцикл</option>
+ 										<option value="false">полено</option>
+									</select>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="col1"> Дама с поленом </td> 
+								<td> 
+									<select id="question2Log">
+										<option value="false">глазная повязка</option>
+ 										<option value="false">диктофон</option>
+ 										<option value="false">мотоцикл</option>
+ 										<option value="true">полено</option>
+									</select>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="col1"> Агент Купер </td> 
+								<td> 
+									<select id="question2Dictophone">
+										<option value="false">глазная повязка</option>
+ 										<option value="true">диктофон</option>
+ 										<option value="false">мотоцикл</option>
+ 										<option value="false">полено</option>
+									</select>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="col1"> Надин </td> 
+								<td> 
+									<select id="question2EyePad">
+										<option value="true">глазная повязка</option>
+ 										<option value="false">диктофон</option>
+ 										<option value="false">мотоцикл</option>
+ 										<option value="false">полено</option>
+									</select>
+								</td>
+							</tr>
+
+						</table>
+
+					</li>
+
+					<li>
+						Как звали парня Лоры и первого подозреваемого в ее убийстве? (Нужно ввести только имя) <br>
+						<input type="text" id="question3">
+					</li>
+
+					<li>
+						Что хотела изобрести Надин? <br>
+
+						<input type="radio" id="question4Choice1" name="question4" value="true">
+						<label for="question4Choice1"> Тихие шторы </label> <br>
+
+						<input type="radio" id="question4Choice2" name="question4" value="false">
+						<label for="question4Choice2"> Сверхпрочную сушилку для белья </label> <br>
+
+						<input type="radio" id="question4Choice3" name="question4" value="false">
+						<label for="question4Choice3"> Переводчик с совиного </label> <br>
+
+						<input type="radio" id="question4Choice4" name="question4" value="false">
+						<label for="question4Choice4"> Универсальный тренажер </label> <br>
+					</li>
+
+					<li>
+						
+						Что сказал великан агенту Куперу после того, как его (Купера) подстрелили? <br>
+
+						<input type="checkbox" id="question5Choice1" name="question5" value="true">
+						<label for="question5Choice1"> Человек в смеющемся мешке </label> <br>
+
+						<input type="checkbox" id="question5Choice2" name="question5" value="false">
+						<label for="question5Choice2"> Пожарный в пурпурном море </label> <br>
+
+						<input type="checkbox" id="question5Choice3" name="question5" value="true">
+						<label for="question5Choice3"> Совы не то, чем кажутся </label> <br>
+
+						<input type="checkbox" id="question5Choice4" name="question5" value="true">
+						<label for="question5Choice4"> Без химикатов, он указывает </label> <br>
+
+					</li>	
+
+					<li>
+						
+						Кто же все-таки убил Лору Палмер? <br>
+
+						<input type="radio" id="question6Choice1" name="question6" value="false">
+						<label for="question6Choice1"> Никто не убивал, она инсценировала смерть, чтобы начать новую жизнь </label> <br>
+
+						<input type="radio" id="question6Choice2" name="question6" value="false">
+						<label for="question6Choice2"> Обезумевший Дейл Купер </label> <br>
+
+						<input type="radio" id="question6Choice3" name="question6" value="false">
+						<label for="question6Choice3"> Сговорившиеся Бобби Бригз и Лео Джонсон </label> <br>
+
+						<input type="radio" id="question6Choice4" name="question6" value="true">
+						<label for="question6Choice4"> Боб, вселившийся в ее отца </label> <br>
+
+					</li>				
+
+				</ol>
+
+				<button class="swipe_button" id="submit" type="submit"><span> Закончить тест </span></button>
+
+				<button class="swipe_button" form="resetForm" id="cancel"><span> Начать заново </span></button>
+
+			</form>
+
+			<div id="scoreOutput"></div>
+		</div>
+
+		<div class="buttonDiv resultsDiv"> 
+
+			<h1 style="text-align: center;"> Результаты </h1>
+
+			<table id="results_table" style="width: 80%; margin: auto;">
+				<tr class="results_row">
+					<td style="margin: 0% 5px;"> Время </td>
+					<td width="200px"> Имя </td>
+					<td width="150px"> Фото </td>
+					<td> Очки  </td>
+					<td> Результат </td>
+				</tr>
+			</table>
+
+		</div>
+
+		<div class="buttonDiv surpriseDiv"> 
+			<br>
+			<form action="Lab10Task1C.html">
+				<button type="submit" style="display: block; margin: auto; color: var(--bg-light-color-theme); background-color: #261D3C;"><span> Если хотите увидеть нечто иное </span></button>
+			</form>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="scripts/jquery-3.5.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("svg").click(function() {
+				var divClassName = $(this).attr("class");
+				divClassName += "Div";
+				divClassName = "." + divClassName;
+
+				var divs = $(".buttonDiv");
+				for (var i = 0; i < divs.length; ++i) {
+					divs[i].style.display = "none";
+				} 
+				var certainDiv = $(divClassName);
+				certainDiv[0].style.display = "block";
+			});
+
+			$("svg").mouseover(function() {
+				$(this).find("rect").css("fill", "#301B0D");
+			});
+
+			$("svg").mouseout(function() {
+				$(this).find("rect").css("fill", "transparent");
+			});	
+
+			$("#resetForm").submit(function(event) {
+				event.preventDefault();
+				scoreOutput.style.display = "none";
+
+				agentName.value = "FBI agent";
+
+				if(fileInput.value){
+			        try {
+			            fileInput.value = '';
+
+					    if(fileInput.value){
+					        fileInput.type = "text";
+					        fileInput.type = "file";
+					    }
+			        } catch(err){ }
+			    }
+
+				yourPhoto.src = "";
+				yourPhotoDiv.style.display = "none";
+
+				var question1Options = document.getElementsByName("question1");
+				for (var i = 0; i < question1Options.length; ++i) {
+					question1Options[i].checked = false;
+				}
+
+				for (var i = 0; i < selectIDs.length; ++i) {
+					document.getElementById(selectIDs[i]).getElementsByTagName("option")[0].selected = "selected";
+				}
+
+				question3.value = "";
+
+				var question4Options = document.getElementsByName("question4");
+				for (var i = 0; i < question4Options.length; ++i) {
+					question4Options[i].checked = false;
+				}
+
+				var question5Options = document.getElementsByName("question5");
+				for (var i = 0; i < question5Options.length; ++i) {
+					question5Options[i].checked = false;
+				}
+
+				var question6Options = document.getElementsByName("question6");
+				for (var i = 0; i < question6Options.length; ++i) {
+					question6Options[i].checked = false;
+				}
+			});	
+		});
+	</script>
+
+</body>
+</html>

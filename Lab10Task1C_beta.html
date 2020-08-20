@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title> Sky map </title>
+
+				   <script> 
+				  
+				     // coordinate function that calculate the X 
+				     // coordinate and Y coordinates 
+				     function coordinate(event) { 
+				  
+				     // clientX gives horizontal coordinate 
+				     var x = event.clientX; 
+				  
+				     // clientY gives vertical coordinates 
+				     var y = event.clientY; 
+				     document.getElementById("X").value = x; 
+				     document.getElementById("Y").value = y + 62; 
+				  } 
+				    </script> 
+
+		<!--
+		<style type="text/css">
+			body {
+				overflow-y: hidden;
+			}
+		</style>
+		-->
+		
+
+	</head>
+	<body onmousemove="coordinate(event)" 
+		style="margin: 0; padding: 0;">		   
+
+
+
+		<img src="images/sky_english.png" style="width: 100%; height: 100%;" usemap="#skymap">
+
+
+			<!-- X coordinate is stored in X-coordinate variable --> 
+		   X-coordinate 
+		   <input type="text" id="X"> 
+		   <br> 
+		   <br> 
+		  
+		   <!-- Y coordinate is stored in Y-coordinate variable --> 
+		   Y-coordinate 
+		   <input type="text" id="Y"> 
+	</body>
+</html>
